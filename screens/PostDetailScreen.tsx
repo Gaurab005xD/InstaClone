@@ -1,18 +1,38 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+} from "react-native";
 
-export default function PostDetailScreen({ route }: any) {
-  const { user, caption } = route.params;
+export default function PostDetailScreen({
+  route,
+}: any) {
+  const { username, caption, image } = route.params;
 
   return (
     <View style={styles.container}>
-      <Text style={styles.user}>{user}</Text>
+      <Text style={styles.username}>
+        {username}
+      </Text>
 
-      <View style={styles.imagePlaceholder}>
-        <Text style={styles.imageText}>Post Image</Text>
-      </View>
+      <Image
+        source={{ uri: image }}
+        style={styles.postImage}
+      />
 
-      <Text style={styles.caption}>{caption}</Text>
+      <Text style={styles.caption}>
+        {caption}
+      </Text>
+
+      <Text style={styles.likes}>
+        Liked by user123 and 248 others
+      </Text>
+
+      <Text style={styles.time}>
+        Posted 2 hours ago
+      </Text>
     </View>
   );
 }
@@ -24,29 +44,35 @@ const styles = StyleSheet.create({
     padding: 15,
   },
 
-  user: {
+  username: {
     color: "#fff",
-    fontSize: 22,
+    fontSize: 24,
     fontWeight: "bold",
     marginBottom: 15,
   },
 
-  imagePlaceholder: {
+  postImage: {
+    width: "100%",
     height: 300,
-    backgroundColor: "#333",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 15,
-  },
-
-  imageText: {
-    color: "#aaa",
-    fontSize: 18,
+    borderRadius: 10,
+    resizeMode: "cover",
   },
 
   caption: {
     color: "#fff",
-    marginTop: 20,
     fontSize: 16,
+    marginTop: 15,
+  },
+
+  likes: {
+    color: "#fff",
+    marginTop: 10,
+    fontWeight: "600",
+  },
+
+  time: {
+    color: "#888",
+    marginTop: 5,
+    fontSize: 12,
   },
 });
