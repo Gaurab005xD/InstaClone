@@ -3,6 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
+import LoginScreen from "./screens/LoginScreen";
 import HomeScreen from "./screens/HomeScreen";
 import SearchScreen from "./screens/SearchScreen";
 import ReelsScreen from "./screens/ReelsScreen";
@@ -36,34 +37,50 @@ function HomeStack() {
   );
 }
 
+function MainTabs() {
+  return (
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <Tab.Screen
+        name="Home"
+        component={HomeStack}
+      />
+
+      <Tab.Screen
+        name="Search"
+        component={SearchScreen}
+      />
+
+      <Tab.Screen
+        name="Reels"
+        component={ReelsScreen}
+      />
+
+      <Tab.Screen
+        name="Profile"
+        component={ProfileScreen}
+      />
+    </Tab.Navigator>
+  );
+}
+
 export default function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator
-        screenOptions={{
-          headerShown: false,
-        }}
-      >
-        <Tab.Screen
-          name="Home"
-          component={HomeStack}
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen
+          name="Login"
+          component={LoginScreen}
         />
 
-        <Tab.Screen
-          name="Search"
-          component={SearchScreen}
+        <Stack.Screen
+          name="MainTabs"
+          component={MainTabs}
         />
-
-        <Tab.Screen
-          name="Reels"
-          component={ReelsScreen}
-        />
-
-        <Tab.Screen
-          name="Profile"
-          component={ProfileScreen}
-        />
-      </Tab.Navigator>
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }
